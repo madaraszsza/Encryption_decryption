@@ -37,8 +37,8 @@ a = encrypt(message, key)
 print("A titkosított szöveg:", a)
 print("A visszafejtett szöveg:", decrypt(a, key))
 
-first_message = "early catches the worm bird"
-second_message ="curiosity killed the cat"
+first_message = "early bird catches the worm"
+second_message = "curiosity killed the cat"
 
 encrypted_f_m = encrypt(first_message, key2)
 encrypted_s_m = encrypt(second_message, key2)
@@ -76,7 +76,7 @@ while len(key) < len(encrypted_f_m):
             m_shard = " "
         else:
             m_shard = tmp_words[0] + " "
-    print(m_shard)
-    print(d_s_m_shard)
+    #print(m_shard)
+    #print(d_s_m_shard)
     messages.reverse()
 print(key)
