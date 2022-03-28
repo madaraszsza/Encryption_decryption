@@ -1,3 +1,5 @@
+import unittest
+
 alphabet = "abcdefghijklmnopqrstuvwxyz "
 key = "abcdefgijkl"
 key2 = "grbqzcyzwgmtyabchzmdefghqst"
@@ -19,6 +21,7 @@ def encrypt(message, key) -> str:
         encrypted_message = encrypted_message + code
     return encrypted_message
 
+
 def decrypt(encrypted_message, key) -> str:
     message = ""
 
@@ -33,6 +36,8 @@ def decrypt(encrypted_message, key) -> str:
             code = alphabet[diff]
         message = message + code
     return message
+
+
 a = encrypt(message, key)
 print("A titkosított szöveg:", a)
 print("A visszafejtett szöveg:", decrypt(a, key))
@@ -58,6 +63,8 @@ def get_key_shard(encrypted_message, message) -> str:
             code = alphabet[diff]
         key_shard = key_shard + code
     return key_shard
+
+
 m_shard = "early "
 key = ""
 key_length = 0
@@ -71,12 +78,28 @@ while len(key) < len(encrypted_f_m):
     tmp_words = [string for string in words if d_s_m_shard in string]
     if len(tmp_words) > 0:
         if len(tmp_words[0]) > len(d_s_m_shard):
-            m_shard = tmp_words[0][-(len(tmp_words[0])-len(d_s_m_shard)):] + " "
+            m_shard = tmp_words[0][-(len(tmp_words[0]) - len(d_s_m_shard)):] + " "
         elif len(tmp_words[0]) == len(d_s_m_shard):
             m_shard = " "
         else:
             m_shard = tmp_words[0] + " "
-    #print(m_shard)
-    #print(d_s_m_shard)
+    # print(m_shard)
+    # print(d_s_m_shard)
     messages.reverse()
 print(key)
+
+
+class TestStringMethods(unittest.TestCase):
+
+    def setUp(self):
+        self.message = "helloworld"
+        self.key = "abcdefgijkl"
+
+    def test_decrypt(self):
+        encryptedMessage = encrypt(self.message, self.key)
+        decryptedMessage = decrypt(encryptedMessage, self.key)
+        self.assertEqual(decryptedMessage, self.message)
+
+
+if __name__ == '__main__':
+    unittest.main()
